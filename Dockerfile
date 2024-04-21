@@ -3,8 +3,11 @@
 FROM python:3.10.9
 WORKDIR /src
 COPY . .
+
 RUN pip install flet
 RUN pip install pytube
 RUN pip install multipledispatch
+RUN pip install DateTime
+
 CMD [ "py", "index.py" ]
 EXPOSE 3000
