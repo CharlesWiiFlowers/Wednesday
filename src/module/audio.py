@@ -21,3 +21,12 @@ async def downloadAudioYoutube(link: str):
 
     except Exception as e:
         logException(e=e)
+
+def download(link: str):
+    """This distinguise on Youtube link and then make it download."""
+
+    # Check if "link" string has a substring
+    if "youtube" in link:
+        downloadAudioYoutube(link=link)
+    else:
+        logException(e="Link site isn't defined or not supported")
