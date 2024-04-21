@@ -5,5 +5,6 @@ WORKDIR /src
 COPY . .
 RUN pip install flet
 RUN pip install pytube
+RUN pip install multipledispatch
 CMD [ "py", "index.py" ]
 EXPOSE 3000
