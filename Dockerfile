@@ -8,6 +8,7 @@ RUN pip install flet
 RUN pip install pytube
 RUN pip install multipledispatch
 RUN pip install DateTime
+RUN pio install openai-whisper
 
 CMD [ "py", "index.py" ]
 EXPOSE 3000
