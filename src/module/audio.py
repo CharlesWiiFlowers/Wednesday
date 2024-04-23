@@ -2,7 +2,7 @@ import os
 from pytube import YouTube
 
 # Peronal imports
-from log import logException
+from module.log import logException
 
 def getPath():
     """Get the path for 'data' on WorkSpaceRoot"""
@@ -11,22 +11,31 @@ def getPath():
     print(path)
     return path
 
-async def downloadAudioYoutube(link: str):
-    """Only give me your URL and I gift your lastAudio.mp3 on /root/data"""
+class audio():
 
-    try:
-        yt = YouTube(url=link, on_progress_callback=[](), on_complete_callback=[]())
-        stream = yt.streams.get_audio_only()
-        stream.download(output_path=getPath(), filename="lastAudio.mp3")
+    def __init__(self) -> None:
+        pass
 
-    except Exception as e:
-        logException(e=e)
+    async def downloadAudioYoutube(link: str):
+        """Only give me your URL and I gift your lastAudio.mp3 on /root/data"""
 
-def download(link: str):
-    """This distinguise on Youtube link and then make it download."""
+        #  on_progress_callback= , on_complete_callback=lambda :
 
-    # Check if "link" string has a substring
-    if "youtube" in link:
-        downloadAudioYoutube(link=link)
-    else:
-        logException(e="Link site isn't defined or not supported")
+        try:
+            yt = YouTube(url=link)
+            stream = yt.streams.get_audio_only()
+            stream.download(output_path=getPath(), filename="lastAudio.mp3")
+
+        except Exception as e:
+            logException(e=e)
+
+    def download(link: str):
+        """This distinguise on Youtube link and then make it download."""
+
+        print("What?")
+
+        # Check if "link" string has a substring
+        if "youtube" in link:
+            audio.downloadAudioYoutube(link=link)
+        else:
+            logException(e="Link site isn't defined or not supported")
