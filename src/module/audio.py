@@ -3,11 +3,13 @@ from pytube import YouTube
 
 # Peronal imports
 from module.log import logException
+from module.log import logExceptionSTR
+from module.transcript import transcriptor
 
 def getPath():
     """Get the path for 'data' on WorkSpaceRoot"""
-    path:str = os.path.abspath()
-    path = path.replace("src/module/audio.py", "data/")
+    path:str = os.path.abspath(__file__)
+    path = path.replace("\\src\\module\\audio.py", "\\data\\")
     print(path)
     return path
 
@@ -25,17 +27,20 @@ class audio():
             yt = YouTube(url=link)
             stream = yt.streams.get_audio_only()
             stream.download(output_path=getPath(), filename="lastAudio.mp3")
+            
+            with open(f"{getPath()}\\lastTranscription.json", "w", encoding="utf-8") as file:
+                file.write(transcriptor())
+                file.close()
 
         except Exception as e:
             logException(e=e)
+            print(e)
 
-    def download(link: str):
+    async def download(link: str):
         """This distinguise on Youtube link and then make it download."""
 
-        print("What?")
-
         # Check if "link" string has a substring
-        if "youtube" in link:
-            audio.downloadAudioYoutube(link=link)
+        if "youtu.be" in link:
+            await audio.downloadAudioYoutube(link=link)
         else:
-            logException(e="Link site isn't defined or not supported")
+            logExceptionSTR(e="Link site isn't defined or not supported")
