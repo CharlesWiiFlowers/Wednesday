@@ -1,4 +1,4 @@
-"""This is for the UI and somethings like it"""
+"""The main file"""
 
 import flet as ft
 
