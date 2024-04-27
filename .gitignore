@@ -1,6 +1,7 @@
 # Personal USE
 Samples/*
-__pycache__
-
-#Log
 logs/*
+data/*
+
+#Python
+__pycache__
