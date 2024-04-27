@@ -1,7 +1,6 @@
 import os
 import sys
 from datetime import datetime
-#from multipledispatch import dispatch
 
 def getPath():
     """Absolute path of 'workSpaceRoot/logs/log.txt'"""
@@ -22,8 +21,6 @@ def getActualTime():
 
     return timeStamp
 
-# Use @dispatch for overload this method
-#@dispatch(e=Exception)
 def logException(e: Exception):
     """Only for register errors and failed execution!!"""
     
@@ -42,7 +39,6 @@ def logException(e: Exception):
             file.write(error)
             file.close()
 
-#@dispatch(e=str)
 def logExceptionSTR(e: str):
     """This is only for the errors than you want to write manually"""
 
